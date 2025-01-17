@@ -1,0 +1,173 @@
+---
+title: 'Lesson 1.4: Independent Events'
+author: "NE Milla, Jr."
+date: "`r Sys.Date()`"
+output:
+  pdf_document: default
+---
+```{=html}
+<style type="text/css">
+
+body, td {
+   font-size: 20px;
+}
+code.r{
+  font-size: 20px;
+}
+pre {
+  font-size: 20px
+}
+</style>
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Learning Outcomes
+
+At the end of the lesson, students must be able to
+
+1. Determine if two events are independent,
+2. Determine if three or more events are pairwise independent,
+3. Determine if three or more events are mutually independent, and
+4. Compute the probability of the intersection of two or more independent events.
+
+## Introduction
+
+The notion of conditional probability was prompted by the fact
+that the knowledge that an event B has occurred might lead us to
+reassess the probability of anther event A. It can, of course, turn out that the occurrence of one event has no influence on the occurrence of the other. For example, given the sex of the first child it seems reasonable to assume that it would not influence the sex of the second child. This concept leads us to what are called **independent events**.
+
+Suppose we toss a die and a coin. Consider the events $A=\{\text{multiple of 3 on the die}\}$ and $B = \{\text{Heads on the coin}\}$. The physical nature of the experiment tells us that the what happens on the coin should not influence the outcome on the die, and conversely. In this sense, using our everyday interpretation of the word "independent," we might say that
+the outcome on one event is independent of the outcome of the other.
+
+How does this carry over in the context of probability theory?
+Based on the descriptions of events $A$ and $B$, we have
+$$
+\begin{aligned}
+A &= \{(H,3),(H,6),(T,3),(T,6)\} \\
+B &= \{(H,1),(H,2),(H,3),(H,4),(H,5),(H,6)\}\\
+A \cap B &= \{(H,3),(H,6)\}
+\end{aligned}
+$$
+Since there 12 outcomes in the sample space, this gives us
+
+$$
+\begin{aligned}
+P(A) &= \frac{4}{12} = \frac{1}{3}\\
+P(B) &= \frac{6}{12} = \frac{1}{2} \\
+P(A \cap B) &= \frac{2}{12} = \frac{1}{6}
+\end{aligned}
+$$
+
+Thus,
+
+$$
+P(A|B) = \frac{P(A \cap B)}{P(B)} = \frac{1/6}{1/2} = \frac{1}{3}
+$$
+
+This examples shows that $P(A|B) = P(A)$, in other words, the conditional probability of $A$ given $B$ is equal to the
+unconditional probability of $A$.
+
+Consequently,
+$$
+\begin{aligned}
+P(A \cap B) &= P(A|B)P(B)\\
+&=P(A)P(B)
+\end{aligned}
+$$
+
+&nbsp;
+
+**Definition**:
+
+Suppose $A$ and $B$ are events in $S$. We say $A$ and $B$  are independent if
+$$
+P(A \cap B) = P(A)P(B)
+$$
+
+**Remarks**:
+
+1. If $P(A) > 0$ and $P(B) > 0$, then the following three conditions for independence are equivalent:
+$$
+\begin{aligned}
+P(A \cap B) &= P(A)P(B) \\
+P(A|B) &= P(A) \\
+P(B|A) &= P(B)
+\end{aligned}
+$$
+
+2. Do not confuse "independence" with what it means for $A$ and $B$ to be mutually exclusive. Independence means that the occurrence of $A$ does not affect whether $B$ occurs, and vice versa. If $A$ and $B$ are mutually exclusive, this means that $A$ and $B$ cannot occur simultaneously.
+
+3. If events $A$ and $B$ are independent, then $A^c$ and $B$ are independent.
+
+4. If events $A$ and $B$ are independent, then $A$ and $B^c$ are independent.
+
+5. If events $A$ and $B$ are independent, then $A^c$ and $B^c$ are independent.
+
+&nbsp;
+
+\underline{Example 1}:
+
+An electrical system consists of two components. The probability the second component functions in a satisfactory manner during its design life is 0.90. The probability at least one of the two components does so is 0.96. The probability both components do so is 0.75. Do the two components function independently?
+
+SOLUTION:
+
+Let $A = \{\text{component 1 functions satisfactorily}\}$ and
+$B = \{\text{component 2 functions satisfactorily}\}$.
+
+From the given information, we have
+
+$$
+\begin{aligned}
+P(B) &= 0.90 \\
+P(A \cup B) &= 0.96\\
+P(A \cap B) &= 0.75
+\end{aligned}
+$$
+
+From the addition rule, $P(A) = 0.81$. To show that the two components are functioning independently, we must be
+able to show that $P(A \cap B) = P(A)P(B)$.
+
+But,
+
+$$
+0.75 = P(A \cap B) \neq P(A)P(B) = 0.81(0.90) = 0.729
+$$
+
+Therefore, events $A$ and $B$ are not independent. In other words, the two components are not functioning independently.
+
+&nbsp;
+
+Let us now extend the notion of independence to more than two events. Let start with three events $A$, $B$, and $C$. These three events are said to be **mutually independent**, or, simply **independent**, if all these conditions are meet:
+
+1. $P(A \cap B) = P(A)P(B)$
+
+2. $P(A \cap C) = P(A)P(C)$
+
+3. $P(B \cap C) = P(B)P(C)$
+
+4. $P(A \cap B \cap C) = P(A)P(B)P(C)$
+
+The first three (3) conditions mean that the events $A$, $B$, and $C$ are pairwise independent.
+
+&nbsp;
+
+\underline{Example 2}:
+
+One ball is drawn randomly from a bowl containing four balls numbered 1, 2, 3, and 4. Define the following three events:
+   $A$ be the event that a 1 or 2 is drawn $\implies A = \{1,2\}$.
+   
+   $B$ be the event that a 1 or 3 is drawn $\implies B = \{1,3\}$.
+   
+   $C$ be the event that a 1 or 4 is drawn $\implies C = \{1,4\}$.
+   
+Are events $A$, $B$, and $C$ pairwise independent? Are they mutually independent?
+
+&nbsp;
+
+\underline{Example 3}:
+
+Suppose $A$, $B$, and $C$ are events such that $A$ and $C$ are independent and $B$ and $C$ are independent. Show that $A \cup B$ and $C$ are independent if $A \cap B$ and $C$ are independent.
+
